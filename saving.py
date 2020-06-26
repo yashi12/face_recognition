@@ -25,16 +25,16 @@ while True:
         face_section = frame[y - offset:y + h + offset, x - offset:x + w + offset]
         face_section = cv2.resize(face_section, (100, 100))
         skip += 1
-        if skip % 10 == 0:
+        if skip % 5 == 0:
             print(len(face_data))
             num_pics += 1
             face_data.append(face_section)
-            if num_pics == 25:
+            if num_pics == 18:
                 break
 
     cv2.imshow("Say Cheese....", frame)
 
-    # key_pressed = cv2.waitKey(1) & 0xFF
+    key_pressed = cv2.waitKey(1) & 0xFF
 
     # if (key_pressed == ord('q')):
     #     break
@@ -43,7 +43,7 @@ while True:
 cap.release()
 cv2.destroyAllWindows()
 
-x = face_data[10].reshape((1,100,100,3))
+x = face_data[5].reshape((1,100,100,3))
 datagen = ImageDataGenerator(rotation_range=40,shear_range=0.2,width_shift_range=0.2,height_shift_range=0.2,zoom_range=0.2,horizontal_flip=False,fill_mode="nearest")
 
 itr=0
